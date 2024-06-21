@@ -1,14 +1,27 @@
 import inquirer from "inquirer";
 import qr from "qr-image";
-const fs = require('node:fs');
+import fs from "fs";
 
 
 inquirer
   .prompt([
     /* Pass your questions in here */
+    {
+        message: 'Enter a URL to create a QR-code from: ',
+        name: 'URL',
+    }
   ])
   .then((answers) => {
-    // Use user feedback for... whatever!!
+    // Create QR image with the user's response
+    var qr_img = qr.image(answers.URL);
+    // Save the image 
+    qr_img.pipe(fs.createWriteStream('./images/qr_image.png'));
+    
+    // Write the url to the specified file
+    fs.writeFile('urls.txt', answers.URL, (err) => {
+        if (err) throw err;
+        console.log('File saved successfully!')
+    });
   })
   .catch((error) => {
     if (error.isTtyError) {
@@ -17,9 +30,3 @@ inquirer
       // Something else went wrong
     }
   });
-
-/* 
-1. Use the inquirer npm package to get user input.
-2. Use the qr-image npm package to turn the user entered URL into a QR code image.
-3. Create a txt file to save the user input using the native fs node module.
-*/
