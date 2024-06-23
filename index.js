@@ -5,7 +5,7 @@ import fs from "fs";
 
 inquirer
   .prompt([
-    /* Pass your questions in here */
+    // Question (prompt)
     {
         message: 'Enter a URL to create a QR-code from: ',
         name: 'URL',
