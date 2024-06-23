@@ -15,7 +15,7 @@ This is a simple Node.js application that prompts the user to input a URL and th
 1. Clone the repository
    
    ```
-   git clone https://github.com/DejusDevspace/qr-image.git
+   git clone https://github.com/DejusDevspace/qr-image-generator.git
    ```
 2. Install the dependencies
    
